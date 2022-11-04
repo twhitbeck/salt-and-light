@@ -1,5 +1,7 @@
 import { Outlet, NavLink, type NavLinkProps } from "react-router-dom";
 
+import logoSrc from "../assets/salt.png";
+
 const CustomNavLink = (props: Omit<NavLinkProps, "className">) => (
   <NavLink
     className={({ isActive }) =>
@@ -14,6 +16,10 @@ const CustomNavLink = (props: Omit<NavLinkProps, "className">) => (
 export function Root() {
   return (
     <>
+      <div className="flex items-center justify-center">
+        <img src={logoSrc} className="max-h-full" alt="Logo" />
+      </div>
+
       <nav className="flex gap-2 border-b p-4">
         <CustomNavLink to="classes">Classes</CustomNavLink>
 
