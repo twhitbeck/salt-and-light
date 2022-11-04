@@ -2,6 +2,8 @@ import { useLoaderData, Link } from "react-router-dom";
 
 import { fetchStudents } from "../api";
 
+import { Table, THead, Th, Tr, TBody, Td } from "../components/Table";
+
 export async function loader() {
   const students = await fetchStudents();
 
@@ -12,33 +14,33 @@ export function Students() {
   const { students } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
 
   return (
-    <table className="w-full">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Firstname</th>
-          <th>Grade</th>
-          <th>Birthday</th>
-        </tr>
-      </thead>
+    <Table>
+      <THead>
+        <Tr>
+          <Th>Id</Th>
+          <Th>Firstname</Th>
+          <Th>Grade</Th>
+          <Th>Birthday</Th>
+        </Tr>
+      </THead>
 
-      <tbody>
+      <TBody>
         {students.map((student) => (
-          <tr key={student.id}>
-            <td>
+          <Tr key={student.id}>
+            <Td>
               <Link
                 className="text-blue-700 hover:underline"
                 to={String(student.id)}
               >
                 {student.id}
               </Link>
-            </td>
-            <td>{student.firstname}</td>
-            <td>{student.grade}</td>
-            <td>{student.birthday}</td>
-          </tr>
+            </Td>
+            <Td>{student.firstname}</Td>
+            <Td>{student.grade}</Td>
+            <Td>{student.birthday}</Td>
+          </Tr>
         ))}
-      </tbody>
-    </table>
+      </TBody>
+    </Table>
   );
 }

@@ -1,5 +1,6 @@
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import { fetchStudent, fetchStudentRegistrations } from "../api";
+import { Table, TBody, Td, Th, THead, Tr } from "../components/Table";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const [student, registrations] = await Promise.all([
@@ -19,21 +20,21 @@ export function Student() {
     <div>
       {student.firstname}
 
-      <table>
-        <thead>
-          <tr>
-            <th>Class</th>
-          </tr>
-        </thead>
+      <Table>
+        <THead>
+          <Tr>
+            <Th>Class</Th>
+          </Tr>
+        </THead>
 
-        <tbody>
+        <TBody>
           {registrations.map((registration) => (
-            <tr key={registration.id}>
-              <td>{registration.class_id}</td>
-            </tr>
+            <Tr key={registration.id}>
+              <Td>{registration.class_id}</Td>
+            </Tr>
           ))}
-        </tbody>
-      </table>
+        </TBody>
+      </Table>
     </div>
   );
 }
